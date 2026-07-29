@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABLOM: Operational Review</title>
+<script>
+  if(localStorage.getItem('ablom-theme') === 'dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -19,6 +24,17 @@
     --line:#DCE8E2;
     --max:920px;
   }
+  :root[data-theme="dark"]{
+    --paper:#0E1613;
+    --paper-deep:#16211D;
+    --ink:#EDF3F0;
+    --ink-soft:#93A8A0;
+    --navy:#7FE0B8;
+    --brass:#00C98C;
+    --sage:#FF6E73;
+    --stamp-red:#FF6E73;
+    --line:#26332D;
+  }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -29,6 +45,28 @@
     font-size:16px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    transition:background .2s ease,color .2s ease;
+  }
+  .theme-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:100;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--paper-deep);
+    color:var(--ink);
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 2px 10px rgba(0,0,0,.12);
+  }
+  @media (max-width:600px){
+    .theme-toggle{top:12px;right:12px;width:38px;height:38px;font-size:15px;}
   }
   ::selection{background:var(--brass);color:var(--paper);}
 
@@ -428,6 +466,8 @@
 </head>
 <body>
 
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">&#9789;</button>
+
 <div class="wrap">
   <header class="doc">
     <div class="stamp">Draft, for discussion</div>
@@ -812,6 +852,28 @@
     <div class="brand-tag">Atelier Operations</div>
   </footer>
 </div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function apply(theme){
+    if(theme === 'dark'){
+      root.setAttribute('data-theme','dark');
+      btn.innerHTML = '&#9728;';
+    } else {
+      root.removeAttribute('data-theme');
+      btn.innerHTML = '&#9789;';
+    }
+  }
+  apply(localStorage.getItem('ablom-theme') || 'light');
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('ablom-theme', next);
+    apply(next);
+  });
+})();
+</script>
 
 </body>
 </html>
