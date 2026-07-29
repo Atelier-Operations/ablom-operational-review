@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABLOM: Operational Review</title>
 <script>
-  if(localStorage.getItem('ablom-theme') === 'dark'){
+  if(localStorage.getItem('ablom-theme') !== 'light'){
     document.documentElement.setAttribute('data-theme','dark');
   }
 </script>
@@ -866,7 +866,7 @@
       btn.innerHTML = '&#9789;';
     }
   }
-  apply(localStorage.getItem('ablom-theme') || 'light');
+  apply(localStorage.getItem('ablom-theme') || 'dark');
   btn.addEventListener('click', function(){
     var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     localStorage.setItem('ablom-theme', next);
