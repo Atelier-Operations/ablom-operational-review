@@ -269,8 +269,32 @@
   }
   .vt-table{width:100%;border-collapse:collapse;font-size:14.5px;}
   @media (max-width:700px){
-    .table-wrap{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
-    .vt-table{min-width:600px;}
+    .table-wrap{overflow:visible;border:none;border-radius:0;}
+    .vt-table, .vt-table thead, .vt-table tbody, .vt-table tr, .vt-table th, .vt-table td{display:block;width:100%;}
+    .vt-table thead{display:none;}
+    .vt-table tr{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px;}
+    .vt-table tr:last-child{margin-bottom:0;}
+    .vt-table td{border-top:1px solid var(--line);}
+    .vt-table tr td:first-child{
+      border-top:none;
+      background:var(--navy);
+      color:var(--paper);
+      font-family:'IBM Plex Mono',monospace;
+      font-size:12.5px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .vt-table tr td:first-child strong{color:var(--paper);}
+    .vt-table td[data-label]::before{
+      content:attr(data-label);
+      display:block;
+      font-family:'IBM Plex Mono',monospace;
+      font-size:11px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--ink-soft);
+      margin-bottom:8px;
+    }
   }
   .vt-table th,.vt-table td{
     text-align:left;
@@ -516,7 +540,7 @@
       <tbody>
         <tr>
           <td><strong>Cosmetics</strong></td>
-          <td>
+          <td data-label="Core operational demand">
             <ul>
               <li>Formulation or private-label sourcing</li>
               <li>Safety assessment</li>
@@ -525,7 +549,7 @@
               <li>Small-batch manufacturing</li>
             </ul>
           </td>
-          <td>
+          <td data-label="What needs to be done">
             <ul>
               <li>Select a formulation/private-label partner</li>
               <li>Complete the safety assessment file</li>
@@ -536,8 +560,8 @@
           </td>
         </tr>
         <tr>
-          <td>Home &amp; living</td>
-          <td>
+          <td><strong>Home &amp; living</strong></td>
+          <td data-label="Core operational demand">
             <ul>
               <li>Freight-heavy sourcing</li>
               <li>Longer lead times</li>
@@ -545,7 +569,7 @@
               <li>Furniture-grade QC</li>
             </ul>
           </td>
-          <td>
+          <td data-label="What needs to be done">
             <ul>
               <li>Identify manufacturing partners</li>
               <li>Negotiate freight and logistics terms</li>
@@ -555,14 +579,14 @@
           </td>
         </tr>
         <tr>
-          <td>Fine dining</td>
-          <td>
+          <td><strong>Fine dining</strong></td>
+          <td data-label="Core operational demand">
             <ul>
               <li>Curating culinary products made by well-known, established chefs</li>
               <li>Bringing their sauces, condiments, spice blends, or signature goods directly to a wider audience</li>
             </ul>
           </td>
-          <td>
+          <td data-label="What needs to be done">
             <ul>
               <li>Sign chef partners</li>
               <li>Select a co-packer or food manufacturer</li>
