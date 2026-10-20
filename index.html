@@ -47,6 +47,39 @@
     -webkit-font-smoothing:antialiased;
     transition:background .2s ease,color .2s ease;
   }
+  .tabs{
+    position:sticky;
+    top:0;
+    z-index:90;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .tabs-in{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+    display:flex;
+    gap:28px;
+  }
+  .tabs a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:18px 0 16px;
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  .tabs a:hover{color:var(--ink);}
+  .tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--brass);}
+  .tabs .short{display:none;}
+  @media (max-width:600px){
+    .tabs-in{padding:0 16px;gap:20px;}
+    .tabs .full{display:none;}
+    .tabs .short{display:inline;}
+  }
   .theme-toggle{
     position:fixed;
     top:20px;
@@ -468,6 +501,13 @@
 
 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">&#9789;</button>
 
+<nav class="tabs" aria-label="ABLOM pages">
+  <div class="tabs-in">
+    <a href="index.html" aria-current="page"><span class="full">Business model &amp; operational read</span><span class="short">Operational read</span></a>
+    <a href="roadmap.html">Roadmap</a>
+  </div>
+</nav>
+
 <div class="wrap">
   <header class="doc">
     <div class="stamp">Draft, for discussion</div>
@@ -491,9 +531,7 @@
       <li><a href="#verticals">03. The three verticals</a></li>
       <li><a href="#gaps">04. Open questions</a></li>
       <li><a href="#offer">05. The operational backbone I imagine</a></li>
-      <li><a href="#together">06. How we could work together</a></li>
-      <li><a href="roadmap.html">07. Roadmap, Oct 20 – Dec 31 &rarr;</a></li>
-    </ol>
+      <li><a href="#together">06. How we could work together</a></li>    </ol>
   </nav>
 
   <!-- 01 MODEL -->
